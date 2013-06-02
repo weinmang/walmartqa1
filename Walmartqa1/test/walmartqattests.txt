@@ -1,0 +1,43 @@
+REST service tests
+
+retrieve item
+
+retrieve item without authorization
+
+insert item
+
+insert item without authorization
+
+retrieve item just inserted
+
+insert same item
+
+retrieve item just inserted
+
+remove all stock for item
+
+retrieve item
+
+attempt to retrieve with post
+
+attempt to insert with get
+
+insert incomplete item (null, empty) all or part
+
+retrieve item after incomplete insert 
+
+retrieve non existent item (null, empty, not found)
+
+stop database
+
+insert item
+
+retrieve item
+
+FUNCTIONS NOT IMPLEMENTED
+
+retrieve item list using non key
+
+insert item eligible for above list
+
+retrieve item list using non key

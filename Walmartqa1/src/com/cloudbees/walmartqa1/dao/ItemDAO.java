@@ -8,13 +8,17 @@ import javax.persistence.PersistenceUnit;
 
 import com.cloudbees.walmartqa1.dto.Item;
 import com.cloudbees.walmartqa1.exception.ApiException;
+import com.cloudbees.walmartqa1.exception.NotFoundException;
 
 public class ItemDAO {
-	@PersistenceUnit
+	@PersistenceUnit(name="walmartqa1")
 	EntityManagerFactory emf;
 
 	EntityManager em = emf.createEntityManager(); 
 	
+	/**
+	 * Simple find by id
+	 */
 	public Item findById(String itemId) throws ApiException {
 		try {
 			em.getTransaction().begin();
@@ -22,12 +26,15 @@ public class ItemDAO {
 			em.getTransaction().commit();
 			return item;
 		} catch (EntityNotFoundException nf) {
-			return (Item)null;
+			throw new NotFoundException("Item with Id "+itemId+" NOT FOUND",nf);
 		} catch (Exception e) {
 			throw new ApiException("Exception retrieving Item",e);
 		}
 	}
 
+	/**
+	 * Simple insert entity
+	 */
 	public Item createItem(Item item) throws ApiException {
 		try {
 			em.getTransaction().begin();

@@ -10,11 +10,14 @@ import com.cloudbees.walmartqa1.dto.Locale;
 import com.cloudbees.walmartqa1.exception.ApiException;
 
 public class LocaleDAO {
-	@PersistenceUnit
+	@PersistenceUnit(name="walmartqa1")
 	EntityManagerFactory emf;
 
 	EntityManager em = emf.createEntityManager(); 
 	
+	/**
+	 * Simple find by id
+	 */
 	public Locale findById(String localeId) throws ApiException {
 		try {
 			em.getTransaction().begin();
@@ -28,6 +31,9 @@ public class LocaleDAO {
 		}
 	}
 
+	/**
+	 * Simple insert entity
+	 */
 	public Locale createLocale(Locale locale) throws ApiException {
 		try {
 			em.getTransaction().begin();

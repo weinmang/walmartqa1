@@ -18,11 +18,14 @@ import com.cloudbees.walmartqa1.dto.StockPK;
 import com.cloudbees.walmartqa1.exception.ApiException;
 
 public class StockDAO {
-	@PersistenceUnit
+	@PersistenceUnit(name="walmartqa1")
 	EntityManagerFactory emf;
 
 	EntityManager em = emf.createEntityManager(); 
 	
+	/**
+	 * Simple find by id
+	 */
 	public Stock findById(String itemId, String storeId) throws ApiException {
 		StockPK stockPK = new StockPK();
 		stockPK.setItemId(itemId);
@@ -40,6 +43,9 @@ public class StockDAO {
 		}
 	}
 
+	/**
+	 * Simple find list by partial id
+	 */
 	public List<Stock> findByItemId(String itemId) throws ApiException {
 		try {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -58,6 +64,9 @@ public class StockDAO {
 		}
 	}
 
+	/**
+	 * Simple insert entity
+	 */
 	public Stock createStock(Stock stock) throws ApiException {
 		try {
 			em.getTransaction().begin();

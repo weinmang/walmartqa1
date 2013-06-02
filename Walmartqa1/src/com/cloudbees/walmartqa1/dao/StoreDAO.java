@@ -10,11 +10,14 @@ import com.cloudbees.walmartqa1.dto.Store;
 import com.cloudbees.walmartqa1.exception.ApiException;
 
 public class StoreDAO {
-	@PersistenceUnit
+	@PersistenceUnit(name="walmartqa1")
 	EntityManagerFactory emf;
 
 	EntityManager em = emf.createEntityManager(); 
 	
+	/**
+	 * Simple find by id
+	 */
 	public Store findById(String storeId) throws ApiException {
 		try {
 			em.getTransaction().begin();
@@ -28,6 +31,9 @@ public class StoreDAO {
 		}
 	}
 
+	/**
+	 * Simple insert entity
+	 */
 	public Store createStore(Store store) throws ApiException {
 		try {
 			em.getTransaction().begin();

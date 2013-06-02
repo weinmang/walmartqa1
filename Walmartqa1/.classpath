@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="E:/Downloads/Spring/jackson-core-2.2.2.jar"/>
 	<classpathentry kind="lib" path="E:/Downloads/Spring/jackson-databind-2.2.2.jar"/>
 	<classpathentry kind="lib" path="E:/OpenSrce/testng-6.8/testng-6.8.jar"/>
+	<classpathentry kind="lib" path="E:/Downloads/Spring/seam-solder-3.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="E:/Downloads/Spring/java-json.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

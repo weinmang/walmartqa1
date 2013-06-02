@@ -1,5 +1,8 @@
 package com.cloudbees.walmartqa1;
 
+/**
+ * Common constants for application
+ */
 public final class ApplicationConstants {
 
 	public static final String BASE_URI = "https://walmartqa1.cloudbees.com/services/";
