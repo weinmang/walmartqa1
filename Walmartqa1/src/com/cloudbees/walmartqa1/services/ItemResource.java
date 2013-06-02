@@ -41,9 +41,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 @PermitAll
 public class ItemResource {
 
-	StoreStockDAO dao = new StoreStockDAO();
-	ObjectMapper mapper = new ObjectMapper();
-
 	/**
 	 * Retrieve 
 	 * @param String containing an Item Id
@@ -67,8 +64,10 @@ public class ItemResource {
 		}
 		try {
 			Item item = (new ItemDAO().findById(id));
+			StoreStockDAO dao = new StoreStockDAO();
 			ItemStockComposite itemComposite = dao.findById(id, item.getLocaleId());
 			PrettyPrinter pretty = new DefaultPrettyPrinter();
+			ObjectMapper mapper = new ObjectMapper();
 			ObjectWriter writer = mapper.writer(pretty);
 			String display = writer.writeValueAsString(itemComposite);
 			return Response.ok(display).build();
@@ -106,6 +105,7 @@ public class ItemResource {
 			ItemDAO dao = new ItemDAO();
 			Item newItem = dao.createItem(item);
 			PrettyPrinter pretty = new DefaultPrettyPrinter();
+			ObjectMapper mapper = new ObjectMapper();
 			ObjectWriter writer = mapper.writer(pretty);
 			String display = writer.writeValueAsString(newItem);
 			return Response.created(URI.create("/services/items/"
