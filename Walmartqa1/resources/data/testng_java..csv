@@ -1,0 +1,8 @@
+##########################
+## CREATE 
+##########################
+com.cloudbees.walmartqa1.services.ItemResourceTest,createItemGoodTest,itemid,tg3000,itemDescr,Total Gym 3000,itemPrice,749.88,localeId,SFBA101
+############
+## RETRIEVE
+############
+com.cloudbees.walmartqa1.services.ItemResourceTest,getItemGoodTest,itemid,tg3000
