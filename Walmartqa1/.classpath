@@ -20,5 +20,7 @@
 	<classpathentry kind="lib" path="E:/OpenSrce/testng-6.8/testng-6.8.jar"/>
 	<classpathentry kind="lib" path="E:/Downloads/Spring/seam-solder-3.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="E:/Downloads/Spring/java-json.jar"/>
+	<classpathentry kind="lib" path="E:/Downloads/Jersey/jersey-core-1.9.1.jar"/>
+	<classpathentry kind="lib" path="E:/Downloads/Jersey/jersey-client-1.9.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

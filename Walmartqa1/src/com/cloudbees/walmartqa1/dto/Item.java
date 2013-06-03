@@ -44,4 +44,9 @@ public class Item {
 		this.localeId = localeId;
 	}
 	
+	@Override
+	public String toString() {
+		return "Item:{itemId:" + itemId + ",itemDescr:" + itemDescr
+				+ ",itemPrice:" + itemPrice.toString() + ",localeId:" + localeId + "}";
+	}
 }

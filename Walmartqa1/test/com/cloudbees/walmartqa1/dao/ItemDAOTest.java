@@ -7,12 +7,13 @@ import org.testng.annotations.Test;
 
 import com.cloudbees.walmartqa1.dao.ItemDAO;
 import com.cloudbees.walmartqa1.dto.Item;
+import com.cloudbees.walmartqa1.exception.ApiException;
 import com.cloudbees.walmartqa1.provider.CsvDataProvider;
 
 public class ItemDAOTest {
 
-	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class)
-	public void findByIdTest(Map<String,String> parms) {
+	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class, expectedExceptions=ApiException.class)
+	public void findByIdTest(Map<String,String> parms) throws ApiException {
 		String itemId = parms.get("itemId");
 		ItemDAO dao = new ItemDAO();
 		Assert.assertNotNull(dao, "Could not instantiate data access object");
@@ -21,8 +22,8 @@ public class ItemDAOTest {
 		Assert.assertEquals(item.getItemId(), itemId, "Returned item inconsistant with search");
 	}
 
-	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class)
-	public void createItemTest(Map<String,String> parms) {
+	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class, expectedExceptions=ApiException.class)
+	public void createItemTest(Map<String,String> parms) throws ApiException {
 		String itemId = parms.get("itemId");
 		String itemDescr = parms.get("itemDescr");
 		String itemPriceStr = parms.get("itemPrice");

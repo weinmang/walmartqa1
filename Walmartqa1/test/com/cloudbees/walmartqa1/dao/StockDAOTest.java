@@ -7,12 +7,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.cloudbees.walmartqa1.dto.Stock;
+import com.cloudbees.walmartqa1.exception.ApiException;
 import com.cloudbees.walmartqa1.provider.CsvDataProvider;
 
 public class StockDAOTest {
 
-	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class)
-	public void findByIdTest(Map<String,String> parms) {
+	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class, expectedExceptions=ApiException.class)
+	public void findByIdTest(Map<String,String> parms) throws ApiException {
 		String itemId = parms.get("itemId");
 		String storeId = parms.get("storeId");
 		StockDAO dao = new StockDAO();
@@ -23,8 +24,8 @@ public class StockDAOTest {
 		Assert.assertEquals(stock.getStoreId(), storeId, "Returned stock store inconsistant with search");
 	}
 
-	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class)
-	public void findByItemIdTest(Map<String,String> parms) {
+	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class, expectedExceptions=ApiException.class)
+	public void findByItemIdTest(Map<String,String> parms) throws ApiException {
 		String itemId = parms.get("itemId");
 		StockDAO dao = new StockDAO();
 		Assert.assertNotNull(dao, "Could not instantiate data access object");
@@ -34,8 +35,8 @@ public class StockDAOTest {
 	}
 
 
-	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class)
-	public void createStockTest(Map<String,String> parms) {
+	@Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvider.class, expectedExceptions=ApiException.class)
+	public void createStockTest(Map<String,String> parms) throws ApiException {
 		String itemId = parms.get("itemId");
 		String storeId = parms.get("storeId");
 		String itemQtyStr = parms.get("itemQty");

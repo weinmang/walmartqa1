@@ -42,7 +42,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class ItemResource {
 
 	/**
-	 * Retrieve 
+	 * Retrieve an Item by its Id together with its Stock by Store
 	 * @param String containing an Item Id
 	 * @return JSON formatted response
 	 */
@@ -81,7 +81,7 @@ public class ItemResource {
 	}
 
 	/**
-	 * Simple insert entity
+	 * Simple insert entity create an Item
 	 * @param InputStream containing JSON representation of an item
 	 * @return JSON formatted response
 	 */
@@ -101,11 +101,14 @@ public class ItemResource {
 			return Response.serverError().entity(ioe.getMessage()).build();
 		}
 		try {
-			Item item = readItem(is);
+			ObjectMapper mapper = new ObjectMapper();
+			Item item = readItem(mapper, is);
+			if (item == null) {
+				return Response.status(Response.Status.BAD_REQUEST).entity("Item is null. Please POST with an Item to create.").build();
+			}
 			ItemDAO dao = new ItemDAO();
 			Item newItem = dao.createItem(item);
 			PrettyPrinter pretty = new DefaultPrettyPrinter();
-			ObjectMapper mapper = new ObjectMapper();
 			ObjectWriter writer = mapper.writer(pretty);
 			String display = writer.writeValueAsString(newItem);
 			return Response.created(URI.create("/services/items/"
@@ -121,7 +124,7 @@ public class ItemResource {
 		}
 	}
 
-	private Item readItem(InputStream is) {
+	private Item readItem(ObjectMapper mapper, InputStream is) {
 
 		Item item = null;
 		try {
